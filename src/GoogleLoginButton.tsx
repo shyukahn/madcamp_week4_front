@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './css/GoogleLoginButton.css';
 import { GoogleLogin, GoogleOAuthProvider, CredentialResponse } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ const GoogleLoginButton: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className='google-login-button-container'>
       {clientId && !userData && (
         <GoogleOAuthProvider clientId={clientId}>
           <GoogleLogin
@@ -48,7 +48,7 @@ const GoogleLoginButton: React.FC = () => {
           />
         </GoogleOAuthProvider>
       )}
-    </>
+    </div>
   );
 };
 
