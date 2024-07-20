@@ -1,14 +1,18 @@
 import React from 'react';
-import './App.css';
-import GoogleLoginButton from './GoogleLoginButton';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './Login';
+import Home from './Home';
 
 function App() {
-
   return (
-    <div className="App">
-      <h1>Google Login</h1>
-      <GoogleLoginButton />
-    </div>
+    <BrowserRouter>
+      <div>
+          <Routes>
+            <Route path="/" element={<Login/>} />
+            <Route path="/home" element={<Home/>} />
+          </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
