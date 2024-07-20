@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Home: React.FC = () => {
+const OurPick: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,4 +26,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default OurPick;
