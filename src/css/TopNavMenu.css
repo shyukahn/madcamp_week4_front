@@ -20,6 +20,17 @@
   color: black;
 }
 
+.nav-link:hover {
+  padding: 4vh 4vw;
+  margin: 0vh 3vw;
+  font-size: x-large;
+  font-weight: bold;
+  text-decoration-line: none;
+  color: black;
+  background-color: #AAC4FF;
+  border-radius: 33px;
+}
+
 .nav-link-click {
   padding: 4vh 4vw;
   margin: 0vh 3vw;

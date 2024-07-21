@@ -5,6 +5,7 @@ import OurPick from './OurPick';
 import './App.css';
 import Main from './Main';
 import Ranking from './Ranking';
+import Mypage from './Mypage';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
             <Route path="/" element={<Main/>} />
             <Route path="/logout" element={<OurPick/>} />
             <Route path="/ranking" element={<Ranking/>} />
-            
+            <Route path="/mypage" element={<Mypage/>} />
           </Routes>
       </div>
     </BrowserRouter>
