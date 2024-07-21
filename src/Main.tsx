@@ -36,7 +36,6 @@ const Main : React.FC = ()=> {
     return (
         <div>
             <TopNavMenu />
-            <div className='firstcon'>
                 <div className='container'>
                     {roomsData.map(room => (
                         <div key={room.room_id} className="room-card" onClick={() => handleRoomClick(room.room_id)} style={{ cursor: 'pointer' }}>
@@ -46,7 +45,6 @@ const Main : React.FC = ()=> {
                         </div>
                     ))}
                 </div>
-            </div>
         </div>
         
     );
