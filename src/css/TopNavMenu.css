@@ -1,0 +1,40 @@
+.top-nav-menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 2vmin;
+  background-color: #eef1ff;
+  overflow: auto;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-link {
+  padding: 4vh 7vw;
+  font-size: x-large;
+  font-weight: bold;
+  text-decoration-line: none;
+  color: black;
+}
+
+.nav-link-click {
+  padding: 4vh 4vw;
+  margin: 0vh 3vw;
+  font-size: x-large;
+  font-weight: bold;
+  text-decoration-line: none;
+  color: black;
+  background-color: #AAC4FF;
+  border-radius: 33px;
+}
+
+hr {
+  border: medium solid #B1B2FF;
+  margin-right: 1vw;
+  margin-top: 2vh;
+  margin-bottom: 0vh;
+  border-radius: 4px;
+}

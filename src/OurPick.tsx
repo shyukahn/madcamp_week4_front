@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TopNavMenu from './components/TopNavMenu';
 
 const OurPick: React.FC = () => {
   const navigate = useNavigate();
@@ -8,19 +9,19 @@ const OurPick: React.FC = () => {
     const isLogin = localStorage.getItem('isLogin');
     const googleAccount = localStorage.getItem('googleAccount');
     if (isLogin !== 'True' || !googleAccount) {
-      navigate('/');
+      navigate('/login');
     }
   }, [navigate]);
 
   const handleLogout = () => {
     localStorage.setItem('isLogin', 'False');
     localStorage.removeItem('googleAccount');
-    navigate('/');
+    navigate('/login');
   };
 
   return (
     <div>
-      <h1>Home Page</h1>
+      <TopNavMenu />
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
