@@ -1,11 +1,10 @@
 import React from 'react';
-import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../css/TopNavMenu.css'
-import Main from '../Main';
 
 const TopNavMenu : React.FC = ()=> {
 
-  const isLogin = localStorage.getItem('isLogin') == 'True';
+  const isLogin = localStorage.getItem('isLogin') === 'True';
 
   return (
     <div className='top-nav-menu'>
@@ -23,7 +22,7 @@ const TopNavMenu : React.FC = ()=> {
           <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to='/'>
             랭킹
           </NavLink>
-          <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to={isLogin ? '/' : '/login'}>
+          <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to={isLogin ? '/mypage' : '/login'}>
             {isLogin ? '마이페이지' : '로그인'}
           </NavLink>
         </nav>
