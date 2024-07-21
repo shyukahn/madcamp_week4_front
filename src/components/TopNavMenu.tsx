@@ -5,6 +5,8 @@ import Main from '../Main';
 
 const TopNavMenu : React.FC = ()=> {
 
+  const isLogin = localStorage.getItem('isLogin') == 'True';
+
   return (
     <div className='top-nav-menu'>
       <div className='logo'>
@@ -21,8 +23,8 @@ const TopNavMenu : React.FC = ()=> {
           <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to='/'>
             랭킹
           </NavLink>
-          <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to='/'>
-            마이페이지
+          <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to={isLogin ? '/' : '/login'}>
+            {isLogin ? '마이페이지' : '로그인'}
           </NavLink>
         </nav>
         <hr />

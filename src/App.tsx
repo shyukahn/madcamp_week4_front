@@ -12,6 +12,7 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login/>} />
             <Route path="/" element={<Main/>} />
+            <Route path="/logout" element={<OurPick/>} />
           </Routes>
       </div>
     </BrowserRouter>
