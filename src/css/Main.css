@@ -1,0 +1,45 @@
+.room-card {
+    background-color: #FFFFFF; /* 상자 배경색 */
+    border-radius: 33px; /* 상자 모서리 깎기 */
+    padding: 20px; /* 상자 내부 여백 */
+    margin: 10px; /* 상자 외부 여백 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+    min-width: 250px; /* 상자 최대 너비 */
+}
+
+.firstcon {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center; /* 요소들을 왼쪽 정렬 */
+
+    padding: 20px; /* 패딩 추가 */
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: flex-start;
+
+}
+
+.room-card h3 {
+    margin: 10px 0;
+    font-size: 1.5em;
+}
+
+.room-card p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+.room-card .people-count {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+body {
+    background-color: #EEF1FF; /* 배경색 설정 */
+}
