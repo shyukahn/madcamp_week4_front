@@ -4,6 +4,7 @@ import Login from './Login';
 import OurPick from './OurPick';
 import './App.css';
 import Main from './Main';
+import Ranking from './Ranking';
 import Mypage from './Mypage';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/" element={<Main/>} />
             <Route path="/logout" element={<OurPick/>} />
+            <Route path="/ranking" element={<Ranking/>} />
             <Route path="/mypage" element={<Mypage/>} />
           </Routes>
       </div>
