@@ -23,7 +23,7 @@ const onLogin = async (res: CredentialResponse, setUserData: React.Dispatch<Reac
       localStorage.setItem('isLogin', 'True');
       localStorage.setItem('googleAccount', data.email);
       setUserData(data); // 데이터를 상태에 저장
-      navigate('/ourpick'); 
+      navigate('/'); 
     } else {
       alert('Invalid token received');
     }
