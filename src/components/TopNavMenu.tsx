@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { BrowserRouter, NavLink, Routes, Route } from 'react-router-dom';
 import '../css/TopNavMenu.css'
+import Main from '../Main';
 
 const TopNavMenu : React.FC = ()=> {
 

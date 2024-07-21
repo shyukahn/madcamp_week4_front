@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './css/Main.css'
+import TopNavMenu from './components/TopNavMenu';
 
 interface Room {
     room_id: number;
@@ -33,17 +34,21 @@ const Main : React.FC = ()=> {
     };
     
     return (
-        <div className='firstcon'>
-            <div className='container'>
-                {roomsData.map(room => (
-                    <div key={room.room_id} className="room-card" onClick={() => handleRoomClick(room.room_id)} style={{ cursor: 'pointer' }}>
-                        <h3>{room.room_title}</h3>
-                        <p>주제: {room.subject_name}</p>
-                        <p className='people-count'>{room.current_people}/{room.max_people}</p>
-                    </div>
-                ))}
+        <div>
+            <TopNavMenu />
+            <div className='firstcon'>
+                <div className='container'>
+                    {roomsData.map(room => (
+                        <div key={room.room_id} className="room-card" onClick={() => handleRoomClick(room.room_id)} style={{ cursor: 'pointer' }}>
+                            <h3>{room.room_title}</h3>
+                            <p>주제: {room.subject_name}</p>
+                            <p className='people-count'>{room.current_people}/{room.max_people}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
+        
     );
 }
 
