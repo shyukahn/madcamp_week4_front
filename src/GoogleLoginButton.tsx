@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const onLogin = async (res: CredentialResponse, setUserData: React.Dispatch<React.SetStateAction<any>>, navigate: (path: string) => void) => {
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/google/login/callback/`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/users/google/login/callback/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
