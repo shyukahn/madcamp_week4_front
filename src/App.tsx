@@ -6,6 +6,8 @@ import './App.css';
 import Main from './Main';
 import Ranking from './Ranking';
 import Mypage from './Mypage';
+import NewRoom from './NewRoom';
+import Ready from './Ready';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
             <Route path="/logout" element={<OurPick/>} />
             <Route path="/ranking" element={<Ranking/>} />
             <Route path="/mypage" element={<Mypage/>} />
+            <Route path="/new-room" element={<NewRoom/>} />
+            <Route path="/ready" element={<Ready/>} />
           </Routes>
       </div>
     </BrowserRouter>

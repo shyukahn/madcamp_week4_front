@@ -1,0 +1,61 @@
+body {
+    background-color: #EEF1FF; /* 배경색 설정 */
+    margin: 0;
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+}
+
+.new-room-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; /* 세로 정렬을 위한 높이 설정 */
+}
+
+.new-room-form {
+    background-color: #D4D9F5;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input{
+    width: calc(100% - 50px); /* 내부 패딩을 고려한 너비 설정 */
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.form-group select {
+    width: calc(100% - 24px); /* 내부 패딩을 고려한 너비 설정 */
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.submit-button {
+    background-color: #A1B4FF;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 33px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #7891FF;
+}
