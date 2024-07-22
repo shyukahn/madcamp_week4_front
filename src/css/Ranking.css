@@ -30,11 +30,41 @@ body {
     font-weight: bold;
 }
 
-.subject-card {
+.subject-card{
     background-color: #F8F8F8;
     border-radius: 50px;
     padding: 2px;
     margin: 5px 0;
     text-align: center;
     font-family: Arial, sans-serif;
+    cursor: pointer;
+}
+.subject-card.selected {
+    background-color: #EEF1FF; /* 선택된 주제의 배경색 설정 */
+}
+.element-card{
+    background-color: #F8F8F8;
+    border-radius: 50px;
+    padding: 2px;
+    margin: 5px 0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 0.8em;
+
+}
+
+.subject-card:hover, .element-card:hover {
+    background-color: #E0E0E0;
+}
+
+.subjects-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.element-card img {
+    max-width: 100%; /* 이미지 최대 너비 설정 */
+    height: auto; /* 이미지 비율 유지 */
+    display: block; /* 이미지 블록 레벨 요소로 설정 */
+    margin: 0 auto; /* 이미지 가운데 정렬 */
 }

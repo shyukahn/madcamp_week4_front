@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './css/Ranking.css'
-
+import './css/Ranking.css';
 import TopNavMenu from './components/TopNavMenu';
-
 
 interface Subject {
     subject_id: number;
@@ -11,8 +9,18 @@ interface Subject {
     subject_rank: number;
 }
 
+interface Element {
+    element_id: number;
+    element_name: string;
+    element_image: string;
+    num_won: number;
+    element_rank: number;
+}
+
 const Ranking: React.FC = () => {
     const [subjectsData, setSubjectsData] = useState<Subject[]>([]);
+    const [elementsData, setElementsData] = useState<Element[]>([]);
+    const [selectedSubject, setSelectedSubject] = useState<number | null>(null);
 
     useEffect(() => {
         const fetchSubjects = async () => {
@@ -28,6 +36,22 @@ const Ranking: React.FC = () => {
         fetchSubjects();
     }, []);
 
+    useEffect(() => {
+        if (selectedSubject !== null) {
+            const fetchElements = async () => {
+                try {
+                    const response = await fetch(`http://localhost:8000/subjects/subject-ranking/${selectedSubject}/element-ranking/`);
+                    const data = await response.json();
+                    setElementsData(data);
+                } catch (error) {
+                    console.error('Error fetching elements data:', error);
+                }
+            };
+
+            fetchElements();
+        }
+    }, [selectedSubject]);
+
     return (
         <div>
             <TopNavMenu />
@@ -36,22 +60,34 @@ const Ranking: React.FC = () => {
                     <div className="box-title">가장 많이 선택된 주제</div>
                     <div className="subjects-container">
                         {subjectsData.map(subject => (
-                            <div key={subject.subject_id} className="subject-card">
+                            <div
+                                key={subject.subject_id}
+                                className={`subject-card ${selectedSubject === subject.subject_id ? 'selected' : ''}`}
+                                onClick={() => setSelectedSubject(subject.subject_id)}
+                            >
                                 <h3>{subject.subject_rank}. {subject.subject_name}</h3>
                                 <p>선택 횟수: {subject.num_used}</p>
                             </div>
                         ))}
                     </div>
                 </div>
-                <div className="box">
-                    <div className="box-title">가장 많은 선택을 받은 후보</div>
-                    <div className="subjects-container">
-                        {/* 여기에는 후보 데이터를 렌더링합니다. */}
+                {selectedSubject !== null && (
+                    <div className="box">
+                        <div className="box-title">가장 많은 선택을 받은 후보</div>
+                        <div className="subjects-container">
+                            {elementsData.map(element => (
+                                <div key={element.element_id} className="element-card">
+                                    <h3>{element.element_rank}. {element.element_name}</h3>
+                                    <img src={`http://localhost:8000/${element.element_image}`} alt={element.element_name} />
+                                    <p>Wins: {element.num_won}</p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );
-}
+};
 
 export default Ranking;
