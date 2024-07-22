@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/Main.css'
 import TopNavMenu from './components/TopNavMenu';
+import { useNavigate } from 'react-router-dom';
 
 interface Room {
     room_id: number;
@@ -14,6 +15,7 @@ interface Room {
 
 const Main : React.FC = ()=> {
     const [roomsData, setRoomsData] = useState<Room[]>([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchRooms = async () => {
@@ -30,7 +32,7 @@ const Main : React.FC = ()=> {
     }, []);
 
     const handleRoomClick = (roomId: number) => {
-        console.log(`Room ID: ${roomId}`);
+        navigate(`/ready/${roomId}`);
     };
     
     return (

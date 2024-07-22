@@ -7,7 +7,7 @@ const ChatRoom = ({ roomName }: { roomName: string }) => {
   const [message, setMessage] = useState<string>('');
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://localhost:8000/ws/chat/${roomName}/`);
+    const socket = new WebSocket(`${process.env.REACT_APP_API_WEBSOCKET_URL}/ws/chat/${roomName}/`);
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -20,7 +20,7 @@ const ChatRoom = ({ roomName }: { roomName: string }) => {
   }, [roomName]);
 
   const sendMessage = () => {
-    const socket = new WebSocket(`ws://localhost:8000/ws/chat/${roomName}/`);
+    const socket = new WebSocket(`${process.env.REACT_APP_API_WEBSOCKET_URL}/ws/chat/${roomName}/`);
     socket.onopen = () => {
       socket.send(JSON.stringify({
         message,
