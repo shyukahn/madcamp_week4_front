@@ -25,7 +25,7 @@ const Ranking: React.FC = () => {
     useEffect(() => {
         const fetchSubjects = async () => {
             try {
-                const response = await fetch('http://localhost:8000/subjects/subject-ranking/');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/subjects/subject-ranking/`);
                 const data = await response.json();
                 setSubjectsData(data);
             } catch (error) {
@@ -40,7 +40,7 @@ const Ranking: React.FC = () => {
         if (selectedSubject !== null) {
             const fetchElements = async () => {
                 try {
-                    const response = await fetch(`http://localhost:8000/subjects/subject-ranking/${selectedSubject}/element-ranking/`);
+                    const response = await fetch(`${process.env.REACT_APP_API_URL}/subjects/subject-ranking/${selectedSubject}/element-ranking/`);
                     const data = await response.json();
                     setElementsData(data);
                 } catch (error) {
@@ -78,7 +78,7 @@ const Ranking: React.FC = () => {
                             {elementsData.map(element => (
                                 <div key={element.element_id} className="element-card">
                                     <h3>{element.element_rank}. {element.element_name}</h3>
-                                    <img src={`http://localhost:8000/${element.element_image}`} alt={element.element_name} />
+                                    <img src={`${process.env.REACT_APP_API_URL}${element.element_image}`} alt={element.element_name} />
                                     <p>Wins: {element.num_won}</p>
                                 </div>
                             ))}

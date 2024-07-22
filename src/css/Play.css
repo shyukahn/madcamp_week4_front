@@ -1,0 +1,49 @@
+body {
+    background-color: #EEF1FF; /* 배경색 설정 */
+    font-family: Arial, sans-serif;
+}
+
+.play-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.elements-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.element-card {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.element-card:hover {
+    transform: scale(1.05);
+}
+
+.element-card img {
+    /* max-width: 100%; */
+    max-width: 400px;
+    border-radius: 20px;
+}
+
+.winner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.winner-container .element-card {
+    max-width: 400px;
+}

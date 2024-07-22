@@ -18,7 +18,7 @@ const Main : React.FC = ()=> {
     useEffect(() => {
         const fetchRooms = async () => {
             try {
-                const response = await fetch('http://localhost:8000/rooms/current-room/');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/rooms/current-room/`);
                 const data = await response.json();
                 setRoomsData(data);
             } catch (error) {

@@ -29,7 +29,7 @@ const Mypage: React.FC = () => {
       }
     };
     fetchUser();
-}, []);
+}, [google_account]);
 
 useEffect(() => {
   const updateNickname = async () => {
