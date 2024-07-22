@@ -1,35 +1,99 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/Ready.css'; // Import the CSS file
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface User {
+  google_account: string;
   nickname: string;
   profile_image_url: string;
 }
+interface Subject {
+  subject_id: number;
+  subject_name: string;
+  num_used: number;
+}
+// interface Room {
+//   room_id: number;
+//   room_title: string;
+//   google_account: string;
+//   max_people: number;
+//   current_people: number;
+//   subject: Subject
+//   users: User[];
+// }
 
 const Ready: React.FC = () => {
   const params = useParams();
-  const room_id = params.room_id;
-  const users: User[] = [
-    { nickname: '닉네임1', profile_image_url: `${process.env.PUBLIC_URL}/logo192.png` },
-    { nickname: '안세혁', profile_image_url: `${process.env.PUBLIC_URL}/logo192.png` },
-    { nickname: '윤우성', profile_image_url: `${process.env.PUBLIC_URL}/logo192.png` },
-    { nickname: '진유하', profile_image_url: `${process.env.PUBLIC_URL}/logo192.png` },
-  ];
+  const roomId = params.room_id;
+  const navigate = useNavigate();
+  const [roomTitle, setRoomTitle] = useState('');
+  const [googleAccount, setGoogleAccount] = useState('');
+  const [maxPeople, setMaxPeople] = useState(0);
+  const [currentPeople, setCurrentPeople] = useState(0);
+  const [subject, setSubject] = useState<Subject>();
+  const [users, setUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const tryEnterRoom = async () => {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/rooms/enter-room/`, {
+        method : 'POST',
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({
+          google_account : localStorage.getItem('googleAccount'),
+          room_id : roomId
+        })
+      });
+      const data = await response.json();
+      if (response.status !== 200) {
+        navigate('/');
+        alert(data.error);
+      } else {
+        setRoomTitle(data.title);
+        setGoogleAccount(data.google_account);
+        setMaxPeople(data.max_people);
+        setCurrentPeople(data.current_people);
+        setSubject(data.subject);
+        setUsers(data.users);
+      }
+    }
+    tryEnterRoom();
+  }, [navigate, roomId]);
+
+  const handlerExit = async () => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/rooms/exit-room/`, {
+      method : 'PUT',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify({
+        google_account : localStorage.getItem('googleAccount')
+      })
+    });
+    if (response.status === 200) {
+      navigate('/');
+    } else {
+      alert('오류가 발생했습니다.');
+    }
+  }
 
   return (
     <div className="ready-container">
       <div className="logo">쌈뽕한 Logo</div>
       <div className='main-container'>
-        <div className='title'>방 제목입니다.</div>
+        <div className='title'>{ roomTitle }</div>
         <div className="room-body-container">
           <div className='user-list-container'>
             <div className='current-people'>
-              <h3>현재 인원 4/5</h3>
+              <h3>현재 인원 { currentPeople }/{ maxPeople }</h3>
             </div>
             {users.map((user) => (
               <div className='user-info'>
-                <img className='user-profile-image' src={user.profile_image_url} />
+                <img 
+                  className='user-profile-image' 
+                  src={user.profile_image_url}
+                  alt='User Profile' />
                 <div className='user-nickname'>
                   {user.nickname}
                 </div>
@@ -42,11 +106,13 @@ const Ready: React.FC = () => {
                 주제
               </div>
               <div className='subject-title'>
-                여자 아이돌 이상형 월드컵
+                { subject?.subject_name }
               </div>
             </div>
             <div className='buttons-container'>
-              <button className='button-exit'>
+              <button 
+                className='button-exit'
+                onClick={handlerExit}>
                 나가기
               </button>
               <button className='button-go'>
