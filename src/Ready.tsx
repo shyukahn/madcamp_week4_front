@@ -89,7 +89,7 @@ const Ready: React.FC = () => {
               <h3>현재 인원 { currentPeople }/{ maxPeople }</h3>
             </div>
             {users.map((user) => (
-              <div className='user-info'>
+              <div key={user.google_account} className='user-info'>
                 <img 
                   className='user-profile-image' 
                   src={user.profile_image_url}
