@@ -24,7 +24,7 @@ const NewRoom: React.FC = () => {
         }
         const fetchSubjects = async () => {
             try {
-                const response = await fetch('http://localhost:8000/subjects/subject-list/');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/subjects/subject-list/`);
                 const data = await response.json();
                 setSubjects(data);
             } catch (error) {
@@ -53,17 +53,22 @@ const NewRoom: React.FC = () => {
         console.log(postData);
 
         try {
-            const response = await fetch('http://localhost:8000/rooms/make-room/', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/rooms/make-room/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(postData),
             });
-
+            console.log("1");
             if (response.ok) {
+                console.log("2");
+
                 const data = await response.json();
+                console.log("3");
+
                 alert('방이 성공적으로 만들어졌습니다.');
+                console.log("4");
                 navigate(`/ready/${data.room_id}`); 
             } else {
                 alert('방 만들기에 실패했습니다.');
