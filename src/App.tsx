@@ -6,6 +6,7 @@ import './App.css';
 import Main from './Main';
 import Ranking from './Ranking';
 import Mypage from './Mypage';
+import ChatRoom from './ChatRoom';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/logout" element={<OurPick/>} />
             <Route path="/ranking" element={<Ranking/>} />
             <Route path="/mypage" element={<Mypage/>} />
+            <Route path="/chatroom" element={<ChatRoom roomName={'testroom'}/>} />
           </Routes>
       </div>
     </BrowserRouter>
