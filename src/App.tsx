@@ -22,7 +22,7 @@ function App() {
             <Route path="/mypage" element={<Mypage/>} />
             <Route path="/chatroom" element={<ChatRoom roomName={'testroom'}/>} />
             <Route path="/new-room" element={<NewRoom/>} />
-            <Route path="/ready" element={<Ready/>} />
+            <Route path="/ready/:room_id" element={<Ready/>} />
           </Routes>
       </div>
     </BrowserRouter>

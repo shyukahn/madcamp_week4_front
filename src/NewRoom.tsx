@@ -62,8 +62,9 @@ const NewRoom: React.FC = () => {
             });
 
             if (response.ok) {
+                const data = await response.json();
                 alert('방이 성공적으로 만들어졌습니다.');
-                navigate('/ready'); // Navigate to home or another relevant page
+                navigate(`/ready/${data.room_id}`); 
             } else {
                 alert('방 만들기에 실패했습니다.');
             }
