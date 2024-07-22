@@ -24,7 +24,7 @@ const NewRoom: React.FC = () => {
         }
         const fetchSubjects = async () => {
             try {
-                const response = await fetch('http://localhost:8000/subjects/subject-list/');
+                const response = await fetch(`${process.env.REACT_APP_API_URL}/subjects/subject-list/`);
                 const data = await response.json();
                 setSubjects(data);
             } catch (error) {
@@ -53,7 +53,7 @@ const NewRoom: React.FC = () => {
         console.log(postData);
 
         try {
-            const response = await fetch('http://localhost:8000/rooms/make-room/', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/rooms/make-room/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,47 +1,61 @@
 import React, { useState } from 'react';
 import './css/Ready.css'; // Import the CSS file
+import { useParams } from 'react-router-dom';
 
 interface User {
-  id: string;
-  name: string;
+  nickname: string;
+  profile_image_url: string;
 }
 
 const Ready: React.FC = () => {
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
-
+  const params = useParams();
+  const room_id = params.room_id;
   const users: User[] = [
-    { id: 'damn', name: 'Damn 중독자' },
-    { id: 'yuha', name: 'YUHA' },
-    { id: 'suk', name: '석' },
-    { id: 'eba', name: '예비 백수3' },
+    { nickname: '닉네임1', profile_image_url: `${process.env.PUBLIC_URL}/logo192.png` },
+    { nickname: '안세혁', profile_image_url: `${process.env.PUBLIC_URL}/logo192.png` },
+    { nickname: '윤우성', profile_image_url: `${process.env.PUBLIC_URL}/logo192.png` },
+    { nickname: '진유하', profile_image_url: `${process.env.PUBLIC_URL}/logo192.png` },
   ];
-
-  const handleUserClick = (user: User) => {
-    setSelectedUser(user);
-  };
 
   return (
     <div className="ready-container">
       <div className="logo">쌈뽕한 Logo</div>
-      <div className="user-list">
-        <h3>현재 인원 4/5</h3>
-        {users.map((user) => (
-          <div
-            key={user.id}
-            className={`user-item ${selectedUser?.id === user.id ? 'selected' : ''}`}
-            onClick={() => handleUserClick(user)}
-          >
-            {user.name}
+      <div className='main-container'>
+        <div className='title'>방 제목입니다.</div>
+        <div className="room-body-container">
+          <div className='user-list-container'>
+            <div className='current-people'>
+              <h3>현재 인원 4/5</h3>
+            </div>
+            {users.map((user) => (
+              <div className='user-info'>
+                <img className='user-profile-image' src={user.profile_image_url} />
+                <div className='user-nickname'>
+                  {user.nickname}
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      {selectedUser && (
-        <div className="user-details">
-          <h3>여자 아이돌 이상형 월드컵</h3>
-          <div className="user-name">{selectedUser.name}</div>
-          <button className="go-button">GO~!</button>
+          <div className='right-body-container'>
+            <div className='subject-container'>
+              <div className='subject-header'>
+                주제
+              </div>
+              <div className='subject-title'>
+                여자 아이돌 이상형 월드컵
+              </div>
+            </div>
+            <div className='buttons-container'>
+              <button className='button-exit'>
+                나가기
+              </button>
+              <button className='button-go'>
+                GO~!
+              </button>
+            </div>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
