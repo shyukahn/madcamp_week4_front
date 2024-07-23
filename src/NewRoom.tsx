@@ -121,7 +121,7 @@ const NewRoom: React.FC = () => {
                             <option value="" disabled>
                                 인원 선택
                             </option>
-                            {[1, 2, 3, 4, 5].map((num) => (
+                            {[2, 3, 4, 5].map((num) => (
                                 <option key={num} value={num}>
                                     {num}
                                 </option>
