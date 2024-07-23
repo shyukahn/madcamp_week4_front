@@ -78,7 +78,6 @@ const Ready: React.FC = () => {
               return updatedUsers;
             });
           }
-          console.log(users);
         }
         socket.onclose = () => {
           console.log("WebSocket connection closed");
@@ -119,6 +118,10 @@ const Ready: React.FC = () => {
     }
   }
 
+  const handlerGo = async () => {
+    console.log('handlerGo');
+  }
+
   return (
     <div className="ready-container">
       <div className="ready-logo">쌈뽕한 Logo</div>
@@ -156,7 +159,11 @@ const Ready: React.FC = () => {
                 onClick={handlerExit}>
                 나가기
               </button>
-              <button className='ready-button-go' disabled={googleAccount !== localStorage.getItem('googleAccount')}>
+              <button 
+                className='ready-button-go' 
+                disabled={googleAccount !== localStorage.getItem('googleAccount')}
+                onClick={handlerGo}
+              >
                 GO~!
               </button>
             </div>
