@@ -5,10 +5,21 @@
   background-color: #eef1ff;
   overflow: auto;
 }
-
-/* .tnm-logo {
-
-} */
+.tnm-logo-container {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+.tnm-logo {
+  display: flex;
+  width: 250px;
+}
+.tnm-menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 
 .tnm-nav-container {
   display: flex;
