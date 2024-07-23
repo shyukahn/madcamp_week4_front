@@ -60,15 +60,10 @@ const NewRoom: React.FC = () => {
                 },
                 body: JSON.stringify(postData),
             });
-            console.log("1");
             if (response.ok) {
-                console.log("2");
-
                 const data = await response.json();
-                console.log("3");
 
                 alert('방이 성공적으로 만들어졌습니다.');
-                console.log("4");
                 navigate(`/ready/${data.room_id}`); 
             } else {
                 alert('방 만들기에 실패했습니다.');

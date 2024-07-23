@@ -27,21 +27,23 @@ const Ready: React.FC = () => {
   const roomId = params.room_id;
   const navigate = useNavigate();
   const [roomTitle, setRoomTitle] = useState('');
-  const [googleAccount, setGoogleAccount] = useState('');
+  const [googleAccount, setGoogleAccount] = useState(''); // 방장 계정
   const [maxPeople, setMaxPeople] = useState(0);
   const [currentPeople, setCurrentPeople] = useState(0);
   const [subject, setSubject] = useState<Subject>();
   const [users, setUsers] = useState<User[]>([]);
+  let socket: WebSocket | null = null;
 
   useEffect(() => {
     const tryEnterRoom = async () => {
+      const google_account = localStorage.getItem('googleAccount')
       const response = await fetch(`${process.env.REACT_APP_API_URL}/rooms/enter-room/`, {
         method : 'POST',
         headers : {
           'Content-Type' : 'application/json'
         },
         body : JSON.stringify({
-          google_account : localStorage.getItem('googleAccount'),
+          google_account : google_account,
           room_id : roomId
         })
       });
@@ -50,6 +52,40 @@ const Ready: React.FC = () => {
         navigate('/');
         alert(data.error);
       } else {
+        socket = new WebSocket(`${process.env.REACT_APP_API_WEBSOCKET_URL}/ws/chat/${roomId}/?google-account=${google_account}`);
+        socket.onopen = () => {
+          console.log("WebSocket connection established");
+        };
+        socket.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          if (data.type === 'member_enter') {
+            setUsers((prevUsers) => {
+              if (!prevUsers.some((u) => u.google_account === data.google_account)) {
+                const updatedUsers = [...prevUsers, {
+                  google_account: data.google_account,
+                  nickname: data.nickname,
+                  profile_image_url: data.profile_image_url,
+                }];
+                setCurrentPeople(updatedUsers.length);
+                return updatedUsers;
+              }
+              return prevUsers;
+            });
+          } else if (data.type === 'member_exit') {
+            setUsers((prevUsers) => {
+              const updatedUsers = prevUsers.filter((u) => u.google_account !== data.google_account);
+              setCurrentPeople(updatedUsers.length);
+              return updatedUsers;
+            });
+          }
+          console.log(users);
+        }
+        socket.onclose = () => {
+          console.log("WebSocket connection closed");
+        };
+        socket.onerror = (error) => {
+          console.error('WebSocket error:', error);
+        };
         setRoomTitle(data.title);
         setGoogleAccount(data.google_account);
         setMaxPeople(data.max_people);
@@ -59,6 +95,10 @@ const Ready: React.FC = () => {
       }
     }
     tryEnterRoom();
+
+    return () => {
+      socket?.close();
+    }
   }, [navigate, roomId]);
 
   const handlerExit = async () => {
@@ -72,6 +112,7 @@ const Ready: React.FC = () => {
       })
     });
     if (response.status === 200) {
+      socket?.close();
       navigate('/');
     } else {
       alert('오류가 발생했습니다.');
