@@ -10,7 +10,7 @@ import ChatRoom from './ChatRoom';
 import NewRoom from './NewRoom';
 import Ready from './Ready';
 import Play from './Play';
-
+import NewSubject from './NewSubject';
 function App() {
   return (
     <BrowserRouter>
@@ -26,6 +26,7 @@ function App() {
             <Route path="/ready/:room_id" element={<Ready/>} />
             {/* <Route path="/play/:room_id" element={<Play/>} /> */}
             <Route path="/play" element={<Play/>} />
+            <Route path="new-subject" element={<NewSubject/>} />
             
           </Routes>
       </div>

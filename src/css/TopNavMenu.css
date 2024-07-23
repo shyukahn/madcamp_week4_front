@@ -28,7 +28,7 @@
 }
 
 .tnm-nav-link {
-  padding: 4vh 7vw;
+  padding: 4vh 4.5vw;
   font-size: x-large;
   font-weight: bold;
   text-decoration-line: none;
@@ -36,7 +36,7 @@
 }
 
 .tnm-nav-link:hover {
-  padding: 4vh 4vw;
+  padding: 3vh 1.5vw;
   margin: 0vh 3vw;
   font-size: x-large;
   font-weight: bold;
