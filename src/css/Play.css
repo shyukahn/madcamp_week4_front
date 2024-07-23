@@ -10,13 +10,13 @@ body {
     padding: 20px;
 }
 
-.elements-container {
+.play-elements-container {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.element-card {
+.play-element-card {
     background-color: #FFFFFF;
     border-radius: 20px;
     padding: 20px;
@@ -27,23 +27,23 @@ body {
     transition: transform 0.3s ease;
 }
 
-.element-card:hover {
+.play-element-card:hover {
     transform: scale(1.05);
 }
 
-.element-card img {
+.play-element-card img {
     /* max-width: 100%; */
     max-width: 400px;
     border-radius: 20px;
 }
 
-.winner-container {
+.play-winner-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
 }
 
-.winner-container .element-card {
+.play-winner-container .play-element-card {
     max-width: 400px;
 }

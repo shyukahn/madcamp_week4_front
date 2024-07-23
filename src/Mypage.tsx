@@ -58,21 +58,21 @@ useEffect(() => {
       <TopNavMenu />
       <div className='mypage-container'>
         <img 
-          className='profile-image'
+          className='mypage-profile-image'
           src={profileUrl}
           alt='Google profile' />
-        <div className='nickname-container'>
+        <div className='mypage-nickname-container'>
           <input
             type='text'
-            className='nickname-input'
+            className='mypage-nickname-input'
             value={nickname === null ? "" : nickname}
             onChange={(e) => setNickname(e.target.value)}
             readOnly={!isEditing}
             onBlur={() => setIsEditing(false)}
           />
-          <FaEdit className='edit-icon' onClick={() => setIsEditing(true)} />
+          <FaEdit className='mypage-edit-icon' onClick={() => setIsEditing(true)} />
         </div>
-        <button className='logout-button'>
+        <button className='mypage-logout-button'>
           로그아웃
         </button>
       </div>

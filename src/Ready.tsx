@@ -80,42 +80,42 @@ const Ready: React.FC = () => {
 
   return (
     <div className="ready-container">
-      <div className="logo">쌈뽕한 Logo</div>
-      <div className='main-container'>
-        <div className='title'>{ roomTitle }</div>
-        <div className="room-body-container">
-          <div className='user-list-container'>
-            <div className='current-people'>
+      <div className="ready-logo">쌈뽕한 Logo</div>
+      <div className='ready-main-container'>
+        <div className='ready-title'>{ roomTitle }</div>
+        <div className="ready-room-body-container">
+          <div className='ready-user-list-container'>
+            <div className='ready-current-people'>
               <h3>현재 인원 { currentPeople }/{ maxPeople }</h3>
             </div>
             {users.map((user) => (
-              <div key={user.google_account} className='user-info'>
+              <div key={user.google_account} className='ready-user-info'>
                 <img 
-                  className='user-profile-image' 
+                  className='ready-user-profile-image' 
                   src={user.profile_image_url}
                   alt='User Profile' />
-                <div className='user-nickname'>
+                <div className='ready-user-nickname'>
                   {user.nickname}
                 </div>
               </div>
             ))}
           </div>
-          <div className='right-body-container'>
-            <div className='subject-container'>
-              <div className='subject-header'>
+          <div className='ready-right-body-container'>
+            <div className='ready-subject-container'>
+              <div className='ready-subject-header'>
                 주제
               </div>
-              <div className='subject-title'>
+              <div className='ready-subject-title'>
                 { subject?.subject_name }
               </div>
             </div>
-            <div className='buttons-container'>
+            <div className='ready-buttons-container'>
               <button 
-                className='button-exit'
+                className='ready-button-exit'
                 onClick={handlerExit}>
                 나가기
               </button>
-              <button className='button-go'>
+              <button className='ready-button-go'>
                 GO~!
               </button>
             </div>

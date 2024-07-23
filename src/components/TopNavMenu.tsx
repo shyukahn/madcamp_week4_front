@@ -8,25 +8,25 @@ const TopNavMenu : React.FC = ()=> {
 
   return (
     <div className='top-nav-menu'>
-      <div className='logo'>
+      <div className='tnm-logo'>
         로고
       </div>
-      <div className='menu-container'>
-        <nav className='nav-container'>
-          <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to='/'>
+      <div className='tnm-menu-container'>
+        <nav className='tnm-nav-container'>
+          <NavLink className={({ isActive }) => "tnm-nav-link" + (isActive ? "-click" : "")} to='/'>
             방 찾기
           </NavLink>
-          <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to='/new-room'>
+          <NavLink className={({ isActive }) => "tnm-nav-link" + (isActive ? "-click" : "")} to='/new-room'>
             방 만들기
           </NavLink>
-          <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to='/ranking'>
+          <NavLink className={({ isActive }) => "tnm-nav-link" + (isActive ? "-click" : "")} to='/ranking'>
             랭킹
           </NavLink>
-          <NavLink className={({ isActive }) => "nav-link" + (isActive ? "-click" : "")} to={isLogin ? '/mypage' : '/login'}>
+          <NavLink className={({ isActive }) => "tnm-nav-link" + (isActive ? "-click" : "")} to={isLogin ? '/mypage' : '/login'}>
             {isLogin ? '마이페이지' : '로그인'}
           </NavLink>
         </nav>
-        <hr />
+        <hr className='tnm-hr'/>
       </div>
     </div>
   );

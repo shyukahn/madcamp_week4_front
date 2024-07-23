@@ -55,14 +55,14 @@ const Ranking: React.FC = () => {
     return (
         <div>
             <TopNavMenu />
-            <div className="main-container">
-                <div className="box">
-                    <div className="box-title">가장 많이 선택된 주제</div>
-                    <div className="subjects-container">
+            <div className="ranking-main-container">
+                <div className="ranking-box">
+                    <div className="ranking-box-title">가장 많이 선택된 주제</div>
+                    <div className="ranking-subjects-container">
                         {subjectsData.map(subject => (
                             <div
                                 key={subject.subject_id}
-                                className={`subject-card ${selectedSubject === subject.subject_id ? 'selected' : ''}`}
+                                className={`ranking-subject-card ${selectedSubject === subject.subject_id ? 'selected' : ''}`}
                                 onClick={() => setSelectedSubject(subject.subject_id)}
                             >
                                 <h3>{subject.subject_rank}. {subject.subject_name}</h3>
@@ -72,11 +72,11 @@ const Ranking: React.FC = () => {
                     </div>
                 </div>
                 {selectedSubject !== null && (
-                    <div className="box">
-                        <div className="box-title">가장 많은 선택을 받은 후보</div>
-                        <div className="subjects-container">
+                    <div className="ranking-box">
+                        <div className="ranking-box-title">가장 많은 선택을 받은 후보</div>
+                        <div className="ranking-subjects-container">
                             {elementsData.map(element => (
-                                <div key={element.element_id} className="element-card">
+                                <div key={element.element_id} className="ranking-element-card">
                                     <h3>{element.element_rank}. {element.element_name}</h3>
                                     <img src={`${process.env.REACT_APP_API_URL}${element.element_image}`} alt={element.element_name} />
                                     <p>Wins: {element.num_won}</p>
