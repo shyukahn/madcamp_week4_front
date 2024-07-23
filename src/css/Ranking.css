@@ -5,13 +5,13 @@ body {
     font-family: Arial, sans-serif; /* 폰트 설정 */
 }
 
-.main-container {
+.ranking-main-container {
     display: flex;
     justify-content: center;
     padding: 20px;
 }
 
-.box {
+.ranking-box {
     background-color: #FFFFFF;
     border-radius: 20px;
     padding: 20px;
@@ -24,13 +24,13 @@ body {
     overflow-y: auto;
 }
 
-.box-title {
+.ranking-box-title {
     margin-bottom: 20px;
     font-size: 1.2em;
     font-weight: bold;
 }
 
-.subject-card{
+.ranking-subject-card{
     background-color: #F8F8F8;
     border-radius: 50px;
     padding: 2px;
@@ -39,10 +39,10 @@ body {
     font-family: Arial, sans-serif;
     cursor: pointer;
 }
-.subject-card.selected {
+.ranking-subject-card.selected {
     background-color: #EEF1FF; /* 선택된 주제의 배경색 설정 */
 }
-.element-card{
+.ranking-element-card{
     background-color: #F8F8F8;
     border-radius: 50px;
     padding: 2px;
@@ -53,16 +53,16 @@ body {
 
 }
 
-.subject-card:hover, .element-card:hover {
+.ranking-subject-card:hover, .ranking-element-card:hover {
     background-color: #E0E0E0;
 }
 
-.subjects-container {
+.ranking-subjects-container {
     display: flex;
     flex-direction: column;
 }
 
-.element-card img {
+.ranking-element-card img {
     max-width: 100%; /* 이미지 최대 너비 설정 */
     height: auto; /* 이미지 비율 유지 */
     display: block; /* 이미지 블록 레벨 요소로 설정 */
