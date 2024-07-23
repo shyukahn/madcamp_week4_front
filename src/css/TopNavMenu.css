@@ -6,13 +6,17 @@
   overflow: auto;
 }
 
-.nav-container {
+/* .tnm-logo {
+
+} */
+
+.tnm-nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.nav-link {
+.tnm-nav-link {
   padding: 4vh 7vw;
   font-size: x-large;
   font-weight: bold;
@@ -20,7 +24,7 @@
   color: black;
 }
 
-.nav-link:hover {
+.tnm-nav-link:hover {
   padding: 4vh 4vw;
   margin: 0vh 3vw;
   font-size: x-large;
@@ -31,7 +35,7 @@
   border-radius: 33px;
 }
 
-.nav-link-click {
+.tnm-nav-link-click {
   padding: 4vh 4vw;
   margin: 0vh 3vw;
   font-size: x-large;
@@ -42,7 +46,7 @@
   border-radius: 33px;
 }
 
-hr {
+.tnm-hr {
   border: 2px solid #a8acc1;
   margin-right: 1vw;
   margin-top: 2vh;

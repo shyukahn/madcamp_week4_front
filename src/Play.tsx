@@ -167,6 +167,7 @@ const Play: React.FC = () => {
     }
   };
 
+
   const getImageUrl = (imagePath: string) => {
     return `http://localhost:8000${imagePath}`;
   };
@@ -184,6 +185,7 @@ const Play: React.FC = () => {
                 <p>Wins: {element.num_won}</p>
               </div>
             ))}
+
           </div>
         </>
       ) : (

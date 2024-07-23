@@ -2,7 +2,7 @@
   padding: 2%;
 }
 
-.logo {
+.ready-logo {
   position: absolute;
   font-size: 24px;
   font-weight: bold;
@@ -10,18 +10,18 @@
   z-index: -1;
 }
 
-.main-container {
+.ready-main-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.title {
+.ready-title {
   font-size: x-large;
   font-weight: bold;
 }
 
-.room-body-container {
+.ready-room-body-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@
   margin-top: 1%;
 }
 
-.user-list-container {
+.ready-user-list-container {
   display: flex;
   flex-direction: column;
   background-color: #D2DAFF;
@@ -41,11 +41,11 @@
   margin-right: 1vw;
 }
 
-.current-people {
+.ready-current-people {
   margin: 10px;
 }
 
-.user-info {
+.ready-user-info {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -57,19 +57,19 @@
   padding: 2vmin 3vmin;
 }
 
-.user-profile-image {
+.ready-user-profile-image {
   position: absolute;
   width: 5vmin;
   height: 5vmin;
   margin-right: 2vmin;
 }
 
-.user-nickname {
+.ready-user-nickname {
   font-size: large;
   margin: auto;
 }
 
-.right-body-container {
+.ready-right-body-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +79,7 @@
   height: 70vh;
 }
 
-.subject-container {
+.ready-subject-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,7 +90,7 @@
   height: 50vh;
 }
 
-.subject-header {
+.ready-subject-header {
   background-color: white;
   border-radius: 33px;
   font-weight: bold;
@@ -99,7 +99,7 @@
   max-width: 30vw;
 }
 
-.subject-title {
+.ready-subject-title {
   background-color: #AAC4FF;
   border-radius: 33px;
   font-weight: bold;
@@ -109,7 +109,7 @@
   max-width: 90%;
 }
 
-.buttons-container {
+.ready-buttons-container {
   display: flex;
   align-items: end;
   justify-content: space-between;
@@ -117,7 +117,7 @@
   height: 15vh;
 }
 
-.button-exit {
+.ready-button-exit {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,11 +129,11 @@
   font-size: 1.3rem;
 }
 
-.button-exit:hover {
+.ready-button-exit:hover {
   background-color: #e49b9b;
 }
 
-.button-go {
+.ready-button-go {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,6 +145,10 @@
   font-size: 1.3rem;
 }
 
-.button-go:hover {
+.ready-button-go:hover {
+  background-color: #b0d39c;
+}
+
+.ready-button-go:disabled {
   background-color: #b0d39c;
 }

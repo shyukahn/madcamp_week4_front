@@ -10,7 +10,7 @@
   background-color: white; /* Optional: background color for the container */
 }
 
-.profile-image {
+.mypage-profile-image {
   width: 15vmin; /* Adjust as needed */
   height: 15vmin; /* Adjust as needed */
   border-radius: 50%; /* Make the image a circle */
@@ -19,7 +19,7 @@
   margin-top: 5vh;
 }
 
-.nickname-input {
+.mypage-nickname-input {
   font-size: 1.2rem; /* Adjust font size as needed */
   border: 1px solid #ccc; /* Optional: border for input */
   border-radius: 5px; /* Rounded corners for input */
@@ -31,24 +31,24 @@
   width: 8vw;
 }
 
-.nickname-input:read-only {
+.mypage-nickname-input:read-only {
   border: none;
 }
 
-.nickname-input:focus {
+.mypage-nickname-input:focus {
   outline: none;
 }
 
-.nickname-input:not(:read-only):focus {
+.mypage-nickname-input:not(:read-only):focus {
   outline: 2px solid black; /* Optional: border for input */
 }
 
-.edit-icon {
+.mypage-edit-icon {
   cursor: pointer; /* Pointer cursor on hover */
   color: #B1B2FF; /* Color of the edit icon */
 }
 
-.logout-button {
+.mypage-logout-button {
   background-color: white; /* Button background color */
   color: #B1B2FF; /* Button text color */
   padding: 1vh 1vw; /* Padding for the button */
@@ -57,7 +57,24 @@
   font-size: 0.9rem; /* Adjust font size as needed */
 }
 
-.logout-button:hover {
+.mypage-logout-button:hover {
+  background-color: #B1B2FF; /* Background color on hover */
+  color: white; /* Text color on hover */
+}
+
+.logout-popup-button {
+  background-color: #EEF1FF; /* Button background color */
+  color: black; /* Button text color */
+  padding: 1vh 1vw; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners for the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 0.9rem; /* Adjust font size as needed */
+  width: fit-content;
+  margin: 20% auto 0px;
+  padding: 5% 10%;
+}
+
+.logout-popup-button:hover {
   background-color: #B1B2FF; /* Background color on hover */
   color: white; /* Text color on hover */
 }
