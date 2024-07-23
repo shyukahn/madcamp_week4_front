@@ -2,17 +2,17 @@
     background-color: #FFFFFF; /* 상자 배경색 */
     border-radius: 33px; /* 상자 모서리 깎기 */
     padding: 20px; /* 상자 내부 여백 */
-    margin: 10px; /* 상자 외부 여백 */
+    margin: 30px; /* 상자 외부 여백 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 상자 그림자 */
     text-align: center; /* 텍스트 가운데 정렬 */
     font-family: Arial, sans-serif; /* 폰트 설정 */
-    min-width: 250px; /* 상자 최대 너비 */
+    min-width: 200px; /* 상자 최대 너비 */
 }
 
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 최소 너비 250px, 최대 너비 가능한 만큼 */
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* 최소 너비 250px, 최대 너비 가능한 만큼 */
     gap: 20px; /* 상자 간의 간격 */
     padding: 20px; /* 패딩 추가 */
     justify-content: center; /* 가운데 정렬 */

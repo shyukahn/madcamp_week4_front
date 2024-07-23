@@ -19,6 +19,9 @@ const TopNavMenu : React.FC = ()=> {
           <NavLink className={({ isActive }) => "tnm-nav-link" + (isActive ? "-click" : "")} to='/new-room'>
             방 만들기
           </NavLink>
+          <NavLink className={({ isActive }) => "tnm-nav-link" + (isActive ? "-click" : "")} to='/new-subject'>
+            주제 만들기
+          </NavLink>
           <NavLink className={({ isActive }) => "tnm-nav-link" + (isActive ? "-click" : "")} to='/ranking'>
             랭킹
           </NavLink>
