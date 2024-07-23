@@ -8,8 +8,8 @@ const TopNavMenu : React.FC = ()=> {
 
   return (
     <div className='top-nav-menu'>
-      <div className='tnm-logo'>
-        로고
+      <div className='tnm-logo-container' >
+        <img className='tnm-logo' src="image 6.png" alt='logo'/>
       </div>
       <div className='tnm-menu-container'>
         <nav className='tnm-nav-container'>
