@@ -148,3 +148,7 @@
 .ready-button-go:hover {
   background-color: #b0d39c;
 }
+
+.ready-button-go:disabled {
+  background-color: #b0d39c;
+}

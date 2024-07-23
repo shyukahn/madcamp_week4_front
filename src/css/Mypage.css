@@ -61,3 +61,20 @@
   background-color: #B1B2FF; /* Background color on hover */
   color: white; /* Text color on hover */
 }
+
+.logout-popup-button {
+  background-color: #EEF1FF; /* Button background color */
+  color: black; /* Button text color */
+  padding: 1vh 1vw; /* Padding for the button */
+  border-radius: 5px; /* Rounded corners for the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 0.9rem; /* Adjust font size as needed */
+  width: fit-content;
+  margin: 20% auto 0px;
+  padding: 5% 10%;
+}
+
+.logout-popup-button:hover {
+  background-color: #B1B2FF; /* Background color on hover */
+  color: white; /* Text color on hover */
+}

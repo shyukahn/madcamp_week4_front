@@ -115,7 +115,7 @@ const Ready: React.FC = () => {
                 onClick={handlerExit}>
                 나가기
               </button>
-              <button className='ready-button-go'>
+              <button className='ready-button-go' disabled={googleAccount !== localStorage.getItem('googleAccount')}>
                 GO~!
               </button>
             </div>
