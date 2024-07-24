@@ -26,7 +26,7 @@ body {
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease;
-    width: 400px; /* Fixed width for the card */
+    width: 600px; /* Fixed width for the card */
     height: 55vh; /* Fixed height for the card */
     display: flex;
     flex-direction: column;
@@ -57,7 +57,7 @@ body {
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease;
-    width: 400px; /* Fixed width for the card */
+    width: 600px; /* Fixed width for the card */
     height: fit-content;
     display: flex;
     flex-direction: column;
@@ -202,7 +202,7 @@ h1, .play-img, .play-objects {
 .play-container h2 {
     position: absolute;
     top: -0.5vh;
-    right: 90vw;
+    right: 89vw;
     /* background-color: #B1B2FF; */
     color: black;
     border: none;
@@ -212,7 +212,7 @@ h1, .play-img, .play-objects {
     font-size: 40px;
     font-weight: bold;
     z-index: 1;
-    width: 5vw;
+    width: 10vw;
     height: 4vh;
     text-align: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
