@@ -14,11 +14,13 @@ interface Message {
   message: string;
 }
 
-const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, socket: WebSocket | null, initialQueue: Element[] }) => {
+const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | undefined, socket: WebSocket | null, initialQueue: Element[], isAdmin: boolean }) => {
   const [queue, setQueue] = useState<Element[]>(initialQueue);
   const [currentElements, setCurrentElements] = useState<Element[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>('');
+  const [selectedIndex, setSelectedIndex] = useState(-1); // -1: None, 0: Left, 1: Right
+  const [currentVote, setCurrentVote] = useState<string[]>(['0', '0']);
 
   useEffect(() => {
     if (socket) {
@@ -28,6 +30,20 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
           setQueue(data.queue);
         } else if (data.type === 'message') {
           setMessages((prevMessages) => [...prevMessages, { username: data.username, message: data.message }]);
+        } else if (data.type === 'vote') {
+          setCurrentVote([data.left, data.right]);
+        } else if (data.type === 'vote_end') {
+          setQueue(prevQueue => {
+            const resultIndex = data.result === 'left' ? 0 : 1;
+            const resultElement = prevQueue[resultIndex];
+            const newQueue = prevQueue.slice(2);
+            newQueue.push(resultElement);
+            console.log(newQueue);
+            return newQueue;
+          })
+          setSelectedIndex(-1);
+          setCurrentVote(['0', '0']);
+          console.log(data.result);
         }
       };
     }
@@ -36,16 +52,26 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
   useEffect(() => {
     if (queue.length > 1) {
       setCurrentElements([queue[0], queue[1]]);
+    } else if (isAdmin) {
+      fetch(`${process.env.REACT_APP_API_URL}/subjects/winner/${queue[0].element_id}/`, {
+        method : 'PUT',
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+      });
     }
   }, [queue]);
 
-  const handleSelection = (selectedElement: Element) => {
-    const newQueue = queue.slice(2);
-    newQueue.push(selectedElement);
-    
+  const handleSelection = (index: number) => {
+    // index === 0 => left, index === 1 => right
     if (socket && (socket.readyState === WebSocket.OPEN)) {
       console.log('Sending queue update');
-      socket.send(JSON.stringify({ type: 'queue_update', queue: newQueue }));
+      socket.send(JSON.stringify({ 
+        type: 'vote', 
+        select: (index === 0 ? 'left' : 'right'), 
+        user: localStorage.getItem('googleAccount')
+      }));
+      setSelectedIndex(index);
     }
   };
 
@@ -66,11 +92,12 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
         <>
           <h1>요소 선택</h1>
           <div className="play-elements-container">
-            {currentElements.map((element) => (
+            {currentElements.map((element, index) => (
               <div key={element.element_id} 
-                className="play-element-card" 
-                onClick={() => handleSelection(element)}>
+                className={`play-element-card${selectedIndex === index ? '-selected' : ''}`}
+                onClick={() => selectedIndex === -1 ? handleSelection(index) : {}}>
                 <h3>{element.element_name}</h3>
+                <h4>{currentVote[index]}</h4>
                 <img src={getImageUrl(element.element_image)} alt={element.element_name} />
                 <p>Wins: {element.num_won}</p>
               </div>

@@ -27,11 +27,27 @@ body {
     transition: transform 0.3s ease;
 }
 
+.play-element-card-selected {
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+}
+
 .play-element-card:hover {
     transform: scale(1.05);
 }
 
 .play-element-card img {
+    /* max-width: 100%; */
+    max-width: 400px;
+    border-radius: 20px;
+}
+
+.play-element-card-selected img {
     /* max-width: 100%; */
     max-width: 400px;
     border-radius: 20px;

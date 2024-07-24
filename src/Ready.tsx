@@ -138,17 +138,25 @@ const Ready: React.FC = () => {
   }
 
   const handlerGo = async () => {
-    if (socketRef.current) {
-      socketRef.current.send(
-        JSON.stringify({
-          type: 'initial_queue',
-        })
-      );
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/subjects/num-used/${roomId}/`, {
+      method : 'PUT',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+    });
+    if (response.status === 200) {
+      if (socketRef.current) {
+        socketRef.current.send(
+          JSON.stringify({
+            type: 'initial_queue',
+          })
+        );
+      }
     }
   }
 
   return (
-    isPlaying ? <Play roomId={roomId} socket={socketRef.current} initialQueue={queue} /> :
+    isPlaying ? <Play roomId={roomId} socket={socketRef.current} initialQueue={queue} isAdmin={googleAccount !== localStorage.getItem('googleAccount')}/> :
     <div className="ready-container">
       <div className="ready-logo">
         <img className='ready-img-logo' src={"/image 6.png"} alt='logo'/>
