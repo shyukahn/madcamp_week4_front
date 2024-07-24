@@ -96,6 +96,15 @@ const Ready: React.FC = () => {
     tryEnterRoom();
 
     return () => {
+      fetch(`${process.env.REACT_APP_API_URL}/rooms/exit-room/`, {
+        method : 'PUT',
+        headers : {
+          'Content-Type' : 'application/json'
+        },
+        body : JSON.stringify({
+          google_account : localStorage.getItem('googleAccount')
+        })
+      });
       socket?.close();
     }
   }, [navigate, roomId]);
