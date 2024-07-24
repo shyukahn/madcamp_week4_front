@@ -199,3 +199,21 @@ h1, .play-img, .play-objects {
     transform: scale(1);
   }
   
+.play-container h2 {
+    position: absolute;
+    top: -0.5vh;
+    right: 90vw;
+    /* background-color: #B1B2FF; */
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 40px;
+    font-weight: bold;
+    z-index: 1;
+    width: 5vw;
+    height: 4vh;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }

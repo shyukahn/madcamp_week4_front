@@ -23,6 +23,7 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
   const [message, setMessage] = useState<string>('');
   const [selectedIndex, setSelectedIndex] = useState(-1); // -1: None, 0: Left, 1: Right
   const [currentVote, setCurrentVote] = useState<string[]>(['0', '0']);
+  const [stage, setStage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -65,6 +66,21 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
       });
     }
   }, [queue]);
+
+  useEffect(() => {
+    if (queue.length >= 9 && queue.length <= 16) {
+      setStage('16강');
+    } else if (queue.length >= 5 && queue.length <= 8) {
+      setStage('8강');
+    } else if (queue.length >= 3 && queue.length <= 4) {
+      setStage('4강');
+    } else if (queue.length === 2) {
+      setStage('결승전');
+    } else {
+      setStage('');
+    }
+  }, [queue]);
+
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -100,6 +116,7 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
 
   return (
     <div className="play-container">
+      {stage && <h2>{stage}</h2>}
       {queue.length > 1 ? (
         <>
           <div className="play-elements-container">

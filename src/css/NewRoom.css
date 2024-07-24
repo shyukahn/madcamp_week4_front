@@ -20,24 +20,24 @@ body {
     text-align: center;
 }
 
-.form-group {
+.room-form-group {
     margin-bottom: 40px;
 }
 
-.form-group label {
+.room-form-group label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
 }
 
-.form-group input{
+.room-form-group input{
     width: calc(100% - 50px); /* 내부 패딩을 고려한 너비 설정 */
     padding: 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
 }
 
-.form-group select {
+.room-form-group select {
     width: calc(100% - 24px); /* 내부 패딩을 고려한 너비 설정 */
     padding: 12px;
     border-radius: 8px;

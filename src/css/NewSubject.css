@@ -8,7 +8,7 @@
   }
   
   .new-subject-form {
-    width: 100%;
+    width: 60vw;
     max-width: 800px;
     background-color: white;
     border-radius: 10px;
@@ -16,22 +16,28 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .form-group {
+  .subject-form-group {
     margin-bottom: 20px;
   }
   
-  .form-group label {
+  .subject-form-group label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
   }
   
-  .form-group input[type="text"] {
-    width: 100%;
+  .subject-form-group input[type="text"] {
+    width: 45vw;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
+  .subject-form-group select {
+    width: calc(100% - 24px); /* 내부 패딩을 고려한 너비 설정 */
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
   
   .elements-grid {
     display: grid;
