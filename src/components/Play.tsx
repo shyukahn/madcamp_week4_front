@@ -16,12 +16,13 @@ interface Message {
   message: string;
 }
 
-const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | undefined, socket: WebSocket | null, initialQueue: Element[], isAdmin: boolean }) => {
+const Play = ({ nickname, socket, initialQueue, isAdmin }: { nickname: string | undefined, socket: WebSocket | null, initialQueue: Element[], isAdmin: boolean }) => {
   const [queue, setQueue] = useState<Element[]>(initialQueue);
   const [currentElements, setCurrentElements] = useState<Element[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>('');
   const [selectedIndex, setSelectedIndex] = useState(-1); // -1: None, 0: Left, 1: Right
+  const [resultIndex, setResultIndex] = useState(-1); 
   const [currentVote, setCurrentVote] = useState<string[]>(['0', '0']);
   const [stage, setStage] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -38,17 +39,20 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
         } else if (data.type === 'vote') {
           setCurrentVote([data.left, data.right]);
         } else if (data.type === 'vote_end') {
-          setQueue(prevQueue => {
-            const resultIndex = data.result === 'left' ? 0 : 1;
-            const resultElement = prevQueue[resultIndex];
-            const newQueue = prevQueue.slice(2);
-            newQueue.push(resultElement);
-            console.log(newQueue);
-            return newQueue;
-          })
+          const voteResultIndex = data.result === 'left' ? 0 : 1;
           setSelectedIndex(-1);
-          setCurrentVote(['0', '0']);
-          console.log(data.result);
+          setResultIndex(voteResultIndex);
+          const timeout = setTimeout(() => {
+            setQueue(prevQueue => {
+              const resultElement = prevQueue[voteResultIndex];
+              const newQueue = prevQueue.slice(2);
+              newQueue.push(resultElement);
+              return newQueue;
+            })
+            setResultIndex(-1);
+            setCurrentVote(['0', '0']);
+          }, 1500);
+          return () => clearTimeout(timeout);
         }
       };
     }
@@ -100,7 +104,7 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
 
   const handleSendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify({ type: 'message', message, username: 'user' })); // Replace 'user' with actual username
+      socket.send(JSON.stringify({ type: 'message', message, username: nickname ?? 'user' })); // Replace 'user' with actual username
       setMessage('');
     }
   };
@@ -122,7 +126,7 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
           <div className="play-elements-container">
             {currentElements.map((element, index) => (
               <div key={element.element_id} 
-                className={`play-element-card${selectedIndex === index ? '-selected' : ''}`}
+                className={`play-element-card${resultIndex === index ? (index === 0 ? ' left' : ' right') : (selectedIndex === index ? ' selected' : '')}`}
                 onClick={() => selectedIndex === -1 ? handleSelection(index) : {}}>
                 <h3>{element.element_name}</h3>
                 <img className = 'play-objects' src={getImageUrl(element.element_image)} alt={element.element_name} />
@@ -160,7 +164,6 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
             onChange={(e) => setMessage(e.target.value)}
             placeholder="메시지를 입력하세요"
             onKeyPress={handleKeyPress}
-
           />
           <button onClick={handleSendMessage}><img src='/send.png' alt='send'/></button>
         </div>

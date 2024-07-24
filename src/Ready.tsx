@@ -36,6 +36,7 @@ const Ready: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [queue, setQueue] = useState<Element[]>([]);
   const socketRef = useRef<WebSocket | null>(null);
+  const nickname = useRef<string | undefined>();
 
   useEffect(() => {
     const tryEnterRoom = async () => {
@@ -97,6 +98,8 @@ const Ready: React.FC = () => {
         setCurrentPeople(data.current_people);
         setSubject(data.subject);
         setUsers(data.users);
+        const me: User = data.users.find((u: User)=> u.google_account === localStorage.getItem('googleAccount'));
+        nickname.current = me.nickname;
       }
     }
     tryEnterRoom();
@@ -156,7 +159,7 @@ const Ready: React.FC = () => {
   }
 
   return (
-    isPlaying ? <Play roomId={roomId} socket={socketRef.current} initialQueue={queue} isAdmin={googleAccount !== localStorage.getItem('googleAccount')}/> :
+    isPlaying ? <Play nickname={nickname.current} socket={socketRef.current} initialQueue={queue} isAdmin={googleAccount !== localStorage.getItem('googleAccount')}/> :
     <div className="ready-container">
       <div className="ready-logo">
         <img className='ready-img-logo' src={"/image 6.png"} alt='logo'/>
