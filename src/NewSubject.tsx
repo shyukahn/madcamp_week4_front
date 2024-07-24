@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import './css/NewSubject.css'; // CSS 파일 임포트
 import TopNavMenu from './components/TopNavMenu';
 
 const NewSubject: React.FC = () => {
   const [subjectName, setSubjectName] = useState('');
   const [elements, setElements] = useState([{ element_name: '', element_image: null }]);
-  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isLogin = localStorage.getItem('isLogin');
+    if (isLogin === 'False') {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/login');
+    }
+  }, [navigate]);
+
   const handleElementChange = (index: number, field: string, value: any) => {
     const newElements = [...elements];
     newElements[index] = { ...newElements[index], [field]: value };
