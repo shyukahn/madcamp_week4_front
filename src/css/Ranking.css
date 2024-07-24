@@ -20,7 +20,7 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
     width: 450px;
-    max-height: 500px;
+    max-height: 60vh;
     overflow-y: auto;
 }
 

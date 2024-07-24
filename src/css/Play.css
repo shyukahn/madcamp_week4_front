@@ -7,6 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     padding: 20px;
 }
 
@@ -26,7 +27,7 @@ body {
     cursor: pointer;
     transition: transform 0.3s ease;
     width: 400px; /* Fixed width for the card */
-    height: 500px; /* Fixed height for the card */
+    height: 55vh; /* Fixed height for the card */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -40,19 +41,24 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     cursor: pointer;
+    width: 400px; /* Fixed width for the card */
+    height: 55vh; /* Fixed height for the card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .play-winner-card {
     background-color: #FFFFFF;
     border-radius: 20px;
-    padding: 20px;
+    padding: 0px 20px;
     margin: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease;
     width: 400px; /* Fixed width for the card */
-    max-height: 550px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
@@ -67,29 +73,26 @@ body {
     height: auto;
     max-height: 70%; /* Ensure the image fits within the card */
     object-fit: contain; /* Maintain aspect ratio */
-    border-radius: 20px;
+    /* border-radius: 20px; */
 }
 .play-winner {
-    height: 33vh;
+    height: 40vh;
     max-height: fit-content;
     object-fit: contain; /* Maintain aspect ratio */
-    border-radius: 20px;
-
 }
 
-.play-element-card-selected img {
-    /* max-width: 100%; */
+/* .play-element-card-selected img {
     max-width: 400px;
     border-radius: 20px;
-}
+} */
 
 .play-winner-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     min-width: 400px; /* Minimum width */
-    max-height: 565px; /* Maximum height */
+    height: 60vh; /* Maximum height */
 }
 
 .play-winner-container .play-element-card {
@@ -106,7 +109,7 @@ body {
 }
 
 .play-img{
-    width: 5vw;
+    width: 5vmin;
     height: auto;
     max-height: 20%;
     object-fit: contain;

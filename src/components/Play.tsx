@@ -102,16 +102,14 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
     <div className="play-container">
       {queue.length > 1 ? (
         <>
-          <h1>요소 선택</h1>
           <div className="play-elements-container">
             {currentElements.map((element, index) => (
               <div key={element.element_id} 
                 className={`play-element-card${selectedIndex === index ? '-selected' : ''}`}
                 onClick={() => selectedIndex === -1 ? handleSelection(index) : {}}>
                 <h3>{element.element_name}</h3>
-                <h4>{currentVote[index]}</h4>
                 <img className = 'play-objects' src={getImageUrl(element.element_image)} alt={element.element_name} />
-                <p></p>
+                <h4>{currentVote[index]}</h4>
               </div>
             ))}
           </div>
@@ -119,8 +117,6 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
       ) : (
         <div className="play-winner-container">
           <button className="navigate-button" onClick={() => navigate('/')}>나가기</button>
-
-          <h1>최종 선택된 요소</h1>
           {queue.length === 1 && (
             <div className="play-winner-card">
               <h3>{queue[0].element_name}</h3>
