@@ -79,7 +79,7 @@ const NewRoom: React.FC = () => {
             <TopNavMenu />
             <div className="new-room-container">
                 <form onSubmit={handleSubmit} className="new-room-form">
-                    <div className="form-group">
+                    <div className="room-form-group">
                         <label>방 제목</label>
                         <input
                             type="text"
@@ -89,7 +89,7 @@ const NewRoom: React.FC = () => {
                             required
                         />
                     </div>
-                    <div className="form-group">
+                    <div className="room-form-group">
                         <label>주제</label>
                         <select
                             value={selectedSubject || ''}
@@ -106,7 +106,7 @@ const NewRoom: React.FC = () => {
                             ))}
                         </select>
                     </div>
-                    <div className="form-group">
+                    <div className="room-form-group">
                         <label>최대 인원</label>
                         <select
                             value={maxPeople || ''}
