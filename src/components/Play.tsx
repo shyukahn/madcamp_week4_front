@@ -16,7 +16,7 @@ interface Message {
   message: string;
 }
 
-const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | undefined, socket: WebSocket | null, initialQueue: Element[], isAdmin: boolean }) => {
+const Play = ({ nickname, socket, initialQueue, isAdmin }: { nickname: string | undefined, socket: WebSocket | null, initialQueue: Element[], isAdmin: boolean }) => {
   const [queue, setQueue] = useState<Element[]>(initialQueue);
   const [currentElements, setCurrentElements] = useState<Element[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -84,7 +84,7 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
 
   const handleSendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(JSON.stringify({ type: 'message', message, username: 'user' })); // Replace 'user' with actual username
+      socket.send(JSON.stringify({ type: 'message', message, username: nickname ?? 'user' })); // Replace 'user' with actual username
       setMessage('');
     }
   };
