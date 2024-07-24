@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import '../css/Play.css';
 
 // 요소 타입 정의
@@ -21,6 +23,8 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
   const [message, setMessage] = useState<string>('');
   const [selectedIndex, setSelectedIndex] = useState(-1); // -1: None, 0: Left, 1: Right
   const [currentVote, setCurrentVote] = useState<string[]>(['0', '0']);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (socket) {
@@ -61,6 +65,9 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
       });
     }
   }, [queue]);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const handleSelection = (index: number) => {
     // index === 0 => left, index === 1 => right
@@ -81,6 +88,11 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
       setMessage('');
     }
   };
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
 
   const getImageUrl = (imagePath: string) => {
     return `${process.env.REACT_APP_API_URL}${imagePath}`;
@@ -98,19 +110,22 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
                 onClick={() => selectedIndex === -1 ? handleSelection(index) : {}}>
                 <h3>{element.element_name}</h3>
                 <h4>{currentVote[index]}</h4>
-                <img src={getImageUrl(element.element_image)} alt={element.element_name} />
-                <p>Wins: {element.num_won}</p>
+                <img className = 'play-objects' src={getImageUrl(element.element_image)} alt={element.element_name} />
+                <p></p>
               </div>
             ))}
           </div>
         </>
       ) : (
         <div className="play-winner-container">
+          <button className="navigate-button" onClick={() => navigate('/')}>나가기</button>
+
           <h1>최종 선택된 요소</h1>
           {queue.length === 1 && (
-            <div className="play-element-card">
+            <div className="play-winner-card">
               <h3>{queue[0].element_name}</h3>
-              <img src={getImageUrl(queue[0].element_image)} alt={queue[0].element_name} />
+              <img className='play-img' src={"/crown.png"} alt='crown'/>
+              <img className = 'play-winner' src={getImageUrl(queue[0].element_image)} alt={queue[0].element_name} />
               <p>Wins: {queue[0].num_won}</p>
             </div>
           )}
@@ -123,14 +138,19 @@ const Play = ({ roomId, socket, initialQueue, isAdmin }: { roomId: string | unde
               <strong>{msg.username}: </strong>{msg.message}
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="메시지를 입력하세요"
-        />
-        <button onClick={handleSendMessage}>Send</button>
+        <div className="input-container">
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="메시지를 입력하세요"
+            onKeyPress={handleKeyPress}
+
+          />
+          <button onClick={handleSendMessage}><img src='/send.png' alt='send'/></button>
+        </div>
       </div>
     </div>
   );
