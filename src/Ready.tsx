@@ -169,6 +169,9 @@ const Ready: React.FC = () => {
                 <div className='ready-user-nickname'>
                   {user.nickname}
                 </div>
+                {user.google_account === googleAccount && (
+                  <img className='crown-icon' src="/crown.png" alt="Crown" />
+                )}
               </div>
             ))}
           </div>

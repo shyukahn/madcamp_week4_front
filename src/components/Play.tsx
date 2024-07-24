@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import '../css/Play.css';
 
 // 요소 타입 정의
@@ -19,6 +21,10 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
   const [currentElements, setCurrentElements] = useState<Element[]>([]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>('');
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+
 
   useEffect(() => {
     if (socket) {
@@ -38,6 +44,9 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
       setCurrentElements([queue[0], queue[1]]);
     }
   }, [queue]);
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const handleSelection = (selectedElement: Element) => {
     const newQueue = queue.slice(2);
@@ -53,6 +62,11 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
     if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(JSON.stringify({ type: 'message', message, username: 'user' })); // Replace 'user' with actual username
       setMessage('');
+    }
+  };
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleSendMessage();
     }
   };
 
@@ -71,19 +85,22 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
                 className="play-element-card" 
                 onClick={() => handleSelection(element)}>
                 <h3>{element.element_name}</h3>
-                <img src={getImageUrl(element.element_image)} alt={element.element_name} />
-                <p>Wins: {element.num_won}</p>
+                <img className = 'play-objects' src={getImageUrl(element.element_image)} alt={element.element_name} />
+                <p></p>
               </div>
             ))}
           </div>
         </>
       ) : (
         <div className="play-winner-container">
+          <button className="navigate-button" onClick={() => navigate('/')}>나가기</button>
+
           <h1>최종 선택된 요소</h1>
           {queue.length === 1 && (
-            <div className="play-element-card">
+            <div className="play-winner-card">
               <h3>{queue[0].element_name}</h3>
-              <img src={getImageUrl(queue[0].element_image)} alt={queue[0].element_name} />
+              <img className='play-img' src={"/crown.png"} alt='crown'/>
+              <img className = 'play-winner' src={getImageUrl(queue[0].element_image)} alt={queue[0].element_name} />
               <p>Wins: {queue[0].num_won}</p>
             </div>
           )}
@@ -96,14 +113,19 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
               <strong>{msg.username}: </strong>{msg.message}
             </div>
           ))}
+          <div ref={messagesEndRef} />
         </div>
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="메시지를 입력하세요"
-        />
-        <button onClick={handleSendMessage}>Send</button>
+        <div className="input-container">
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="메시지를 입력하세요"
+            onKeyPress={handleKeyPress}
+
+          />
+          <button onClick={handleSendMessage}><img src='/send.png' alt='send'/></button>
+        </div>
       </div>
     </div>
   );
