@@ -65,22 +65,23 @@ const Play = ({ roomId, socket, initialQueue }: { roomId: string | undefined, so
       {queue.length > 1 ? (
         <>
           <h1>요소 선택</h1>
-          <div className="elements-container">
+          <div className="play-elements-container">
             {currentElements.map((element) => (
-              <div key={element.element_id} className="element-card" onClick={() => handleSelection(element)}>
+              <div key={element.element_id} 
+                className="play-element-card" 
+                onClick={() => handleSelection(element)}>
                 <h3>{element.element_name}</h3>
                 <img src={getImageUrl(element.element_image)} alt={element.element_name} />
                 <p>Wins: {element.num_won}</p>
               </div>
             ))}
-
           </div>
         </>
       ) : (
-        <div className="winner-container">
+        <div className="play-winner-container">
           <h1>최종 선택된 요소</h1>
           {queue.length === 1 && (
-            <div className="element-card">
+            <div className="play-element-card">
               <h3>{queue[0].element_name}</h3>
               <img src={getImageUrl(queue[0].element_image)} alt={queue[0].element_name} />
               <p>Wins: {queue[0].num_won}</p>
