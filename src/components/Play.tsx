@@ -22,6 +22,7 @@ const Play = ({ nickname, socket, initialQueue, isAdmin }: { nickname: string | 
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>('');
   const [selectedIndex, setSelectedIndex] = useState(-1); // -1: None, 0: Left, 1: Right
+  const [resultIndex, setResultIndex] = useState(-1); 
   const [currentVote, setCurrentVote] = useState<string[]>(['0', '0']);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -37,17 +38,20 @@ const Play = ({ nickname, socket, initialQueue, isAdmin }: { nickname: string | 
         } else if (data.type === 'vote') {
           setCurrentVote([data.left, data.right]);
         } else if (data.type === 'vote_end') {
-          setQueue(prevQueue => {
-            const resultIndex = data.result === 'left' ? 0 : 1;
-            const resultElement = prevQueue[resultIndex];
-            const newQueue = prevQueue.slice(2);
-            newQueue.push(resultElement);
-            console.log(newQueue);
-            return newQueue;
-          })
+          const voteResultIndex = data.result === 'left' ? 0 : 1;
           setSelectedIndex(-1);
-          setCurrentVote(['0', '0']);
-          console.log(data.result);
+          setResultIndex(voteResultIndex);
+          const timeout = setTimeout(() => {
+            setQueue(prevQueue => {
+              const resultElement = prevQueue[voteResultIndex];
+              const newQueue = prevQueue.slice(2);
+              newQueue.push(resultElement);
+              return newQueue;
+            })
+            setResultIndex(-1);
+            setCurrentVote(['0', '0']);
+          }, 1500);
+          return () => clearTimeout(timeout);
         }
       };
     }
@@ -105,7 +109,7 @@ const Play = ({ nickname, socket, initialQueue, isAdmin }: { nickname: string | 
           <div className="play-elements-container">
             {currentElements.map((element, index) => (
               <div key={element.element_id} 
-                className={`play-element-card${selectedIndex === index ? '-selected' : ''}`}
+                className={`play-element-card${resultIndex === index ? (index === 0 ? ' left' : ' right') : (selectedIndex === index ? ' selected' : '')}`}
                 onClick={() => selectedIndex === -1 ? handleSelection(index) : {}}>
                 <h3>{element.element_name}</h3>
                 <img className = 'play-objects' src={getImageUrl(element.element_image)} alt={element.element_name} />
@@ -143,7 +147,6 @@ const Play = ({ nickname, socket, initialQueue, isAdmin }: { nickname: string | 
             onChange={(e) => setMessage(e.target.value)}
             placeholder="메시지를 입력하세요"
             onKeyPress={handleKeyPress}
-
           />
           <button onClick={handleSendMessage}><img src='/send.png' alt='send'/></button>
         </div>
