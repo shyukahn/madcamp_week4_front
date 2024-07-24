@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './css/Ready.css'; // Import the CSS file
 import { useNavigate, useParams } from 'react-router-dom';
+import Play, { Element } from './components/Play';
 
 interface User {
   google_account: string;
@@ -32,7 +33,9 @@ const Ready: React.FC = () => {
   const [currentPeople, setCurrentPeople] = useState(0);
   const [subject, setSubject] = useState<Subject>();
   const [users, setUsers] = useState<User[]>([]);
-  let socket: WebSocket | null = null;
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [queue, setQueue] = useState<Element[]>([]);
+  const socketRef = useRef<WebSocket | null>(null);
 
   useEffect(() => {
     const tryEnterRoom = async () => {
@@ -52,11 +55,11 @@ const Ready: React.FC = () => {
         navigate('/');
         alert(data.error);
       } else {
-        socket = new WebSocket(`${process.env.REACT_APP_API_WEBSOCKET_URL}/ws/chat/${roomId}/?google-account=${google_account}`);
-        socket.onopen = () => {
+        socketRef.current = new WebSocket(`${process.env.REACT_APP_API_WEBSOCKET_URL}/ws/chat/${roomId}/?google-account=${google_account}`);
+        socketRef.current.onopen = () => {
           console.log("WebSocket connection established");
         };
-        socket.onmessage = (event) => {
+        socketRef.current.onmessage = (event) => {
           const data = JSON.parse(event.data);
           if (data.type === 'member_enter') {
             setUsers((prevUsers) => {
@@ -77,12 +80,15 @@ const Ready: React.FC = () => {
               setCurrentPeople(updatedUsers.length);
               return updatedUsers;
             });
+          } else if (data.type === 'initial_queue') {
+            setQueue(data.queue);
+            setIsPlaying(true);
           }
         }
-        socket.onclose = () => {
+        socketRef.current.onclose = () => {
           console.log("WebSocket connection closed");
         };
-        socket.onerror = (error) => {
+        socketRef.current.onerror = (error) => {
           console.error('WebSocket error:', error);
         };
         setRoomTitle(data.title);
@@ -96,7 +102,18 @@ const Ready: React.FC = () => {
     tryEnterRoom();
 
     return () => {
-      socket?.close();
+      if (socketRef.current) {
+        fetch(`${process.env.REACT_APP_API_URL}/rooms/exit-room/`, {
+          method : 'PUT',
+          headers : {
+            'Content-Type' : 'application/json'
+          },
+          body : JSON.stringify({
+            google_account : localStorage.getItem('googleAccount')
+          })
+        });
+        socketRef.current.close();
+      }
     }
   }, [navigate, roomId]);
 
@@ -111,7 +128,9 @@ const Ready: React.FC = () => {
       })
     });
     if (response.status === 200) {
-      socket?.close();
+      if (socketRef.current) {
+        socketRef.current.close();
+      }
       navigate('/');
     } else {
       alert('오류가 발생했습니다.');
@@ -119,10 +138,17 @@ const Ready: React.FC = () => {
   }
 
   const handlerGo = async () => {
-    console.log('handlerGo');
+    if (socketRef.current) {
+      socketRef.current.send(
+        JSON.stringify({
+          type: 'initial_queue',
+        })
+      );
+    }
   }
 
   return (
+    isPlaying ? <Play roomId={roomId} socket={socketRef.current} initialQueue={queue} /> :
     <div className="ready-container">
       <div className="ready-logo">쌈뽕한 Logo</div>
       <div className='ready-main-container'>

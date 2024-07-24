@@ -9,7 +9,7 @@ import Mypage from './Mypage';
 import ChatRoom from './ChatRoom';
 import NewRoom from './NewRoom';
 import Ready from './Ready';
-import Play from './Play';
+import Play from './components/Play';
 import NewSubject from './NewSubject';
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
             <Route path="/chatroom" element={<ChatRoom roomName={'testroom'}/>} />
             <Route path="/new-room" element={<NewRoom/>} />
             <Route path="/ready/:room_id" element={<Ready/>} />
-            {/* <Route path="/play/:room_id" element={<Play/>} /> */}
-            <Route path="/play" element={<Play/>} />
+            {/* <Route path="/play/:room_id" element={<Play/>} />
+            <Route path="/play" element={<Play/>} /> */}
             <Route path="new-subject" element={<NewSubject/>} />
             
           </Routes>
