@@ -121,7 +121,9 @@ const Ready: React.FC = () => {
 
   return (
     <div className="ready-container">
-      <div className="ready-logo">쌈뽕한 Logo</div>
+      <div className="ready-logo">
+        <img className='ready-img-logo' src={"/image 6.png"} alt='logo'/>
+      </div>
       <div className='ready-main-container'>
         <div className='ready-title'>{ roomTitle }</div>
         <div className="ready-room-body-container">

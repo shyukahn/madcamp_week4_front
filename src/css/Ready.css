@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
 }
 
 .ready-title {
@@ -151,4 +152,9 @@
 
 .ready-button-go:disabled {
   background-color: #b0d39c;
+}
+
+.ready-img-logo {
+  display: flex;
+  width: 200px;
 }
