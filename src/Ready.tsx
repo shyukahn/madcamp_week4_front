@@ -158,7 +158,7 @@ const Ready: React.FC = () => {
   }
 
   return (
-    isPlaying ? <Play nickname={nickname.current} socket={socketRef.current} initialQueue={queue} isAdmin={googleAccount !== localStorage.getItem('googleAccount')}/> :
+    isPlaying ? <Play nickname={nickname.current} socket={socketRef.current} initialQueue={queue} isAdmin={googleAccount === localStorage.getItem('googleAccount')}/> :
     <div className="ready-container">
       <div className="ready-logo">
         <img className='ready-img-logo' src={"/image 6.png"} alt='logo'/>
