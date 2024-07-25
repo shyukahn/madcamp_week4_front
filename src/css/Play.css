@@ -60,13 +60,13 @@ body {
 
 .play-element-card.left {
     transition: transform 0.7s ease;
-    transform: scale(1) translateX(250px);
+    transform: scale(1) translateX(360px);
     z-index: 1;
 }
 
 .play-element-card.right {
     transition: transform 0.7s ease;
-    transform: scale(1) translateX(-250px);
+    transform: scale(1) translateX(-360px);
     z-index: 1;
 }
 
