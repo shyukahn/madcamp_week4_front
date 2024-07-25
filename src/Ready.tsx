@@ -114,8 +114,7 @@ const Ready: React.FC = () => {
           body : JSON.stringify({
             google_account : localStorage.getItem('googleAccount')
           })
-        });
-        socketRef.current.close();
+        }).then((response) => { if (response.status == 200) socketRef.current?.close() });
       }
     }
   }, [navigate, roomId]);
