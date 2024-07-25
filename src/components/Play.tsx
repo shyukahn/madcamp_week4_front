@@ -130,7 +130,7 @@ const Play = ({ nickname, socket, initialQueue, isAdmin }: { nickname: string | 
                 onClick={() => selectedIndex === -1 ? handleSelection(index) : {}}>
                 <h3>{element.element_name}</h3>
                 <img className = 'play-objects' src={getImageUrl(element.element_image)} alt={element.element_name} />
-                <h4>{currentVote[index]}</h4>
+                <h3>{currentVote[index]}</h3>
               </div>
             ))}
           </div>
