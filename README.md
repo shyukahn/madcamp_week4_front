@@ -1,46 +1,100 @@
-# Getting Started with Create React App
+## OurPick
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+OurPick은 각종 주제에 대한 월드컵을 개최하는 사이트 입니다. 
 
-## Available Scripts
+기존의 사이트들과 다르게 직접 원하는 월드컵을 개최하고, 사람들과 실시간으로 토론하며 월드컵에 참여할 수 있습니다.
 
-In the project directory, you can run:
+## Team
 
-### `npm start`
+[shyukahn - Overview](https://github.com/shyukahn)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[SPWooSeong - Overview](https://github.com/SPWooSeong)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+front-end : react + typescript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+back-end : django
 
-### `npm run build`
+IDE : VSC
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Version Control : Git Hub
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Web Work
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 방 찾기
 
-### `npm run eject`
+![](readme_images/1.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 사이트에 접속하게 되면 가장 처음 나오게 되는 화면으로 현재 생성되고, 참여할 수 있는 방들이 나오게 된다.
+- 하지만, 로그인 없이는 대부분의 기능을 이용할 수 없다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 로그인
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![](readme_images/2.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/fb072350-1919-43b1-b657-5ab87c90cb74/Untitled.png)
 
-## Learn More
+- 로그인 화면으로, 구글을 통해 간편하게 로그인 할 수 있다. 기존의 유저는 DB에 있는 정보를 가져오고, 신규 유저는 DB에 등록한다.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 마이페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![](readme_images/3.png)
+
+- 로그인 이후에는 원래 로그인이던 NavBar에서 마이페이지로 변경이 된다.-
+- 이 페이지에서는 자신의 프로필을 확인할 수 있으며, 편접 버튼을 통해 플레이 중에 표시될 닉네임을 변경할 수 있다. 기본으로 구글 계정의 이름으로 설정된다.
+- 로그아웃 버튼을 통해 로그아웃 할 수 있다.
+
+### 방 만들기
+
+![](readme_images/4.png)
+
+- 로그인 이후, 스스로 원하는 방을 만들 수 있다.
+- 방 제목, 주제, 최대 인원을 설정하여 방을 만들게 된다. DB에 주제로써 등록되어 있는 정보들을 불러와 사용하게 된다.
+
+### 방 준비
+
+![](readme_images/5.png)
+
+- 로그인 이후, 방 만들기를 하거나 방 찾기에서 원하는 방에 참여하게 된다면, 방 준비로 가게된다.
+- 소켓을 통해 실시간으로 방에 참여한 인원이 늘거나 줄며, 방장은 왕관 아이콘이 생기게 된다.
+- 방장만이 GO~! 버튼을 누를 수 있다.
+
+### 월드컵 시작
+
+![](readme_images/6.png)
+
+- 기본적으로 투표 기능을 통해 올라갈 요소를 선정한다. 방에 존재하는 모든 사람이 투표에 참여하면 다음 라운드가 되고, 동점이라면 랜덤 요소가 올라가게 된다.
+- 선정된 요소는 화면의 중앙으로 이동하는 애니매이션이 나온다
+
+![](readme_images/7.png)
+
+- 투표 중 서로의 의견을 나눌 수 있는 채팅창이 존재한다.
+- queue 구조를 이용해 우승자는 다시 큐에 들어가는 방식으로 월드컵을 구현하였으며, 남은 강 수에 따라 몇 강인지 표시된다.
+
+### 우승자 표시
+
+![](readme_images/8.png)
+
+- queue 요소가 1이 되면, 우승 요소에 왕관이 씌워지며, 나가기 버튼이 활성화 된다.
+- 방의 모든 인원이 나간다면, DB에서 해당 Room이 사라지게 된다.
+
+### 랭킹 페이지
+
+![](readme_images/9.png)
+
+- 랭킹 페이지에 들어간다면, 가장 많이 선택된 주제에 대한 랭킹이 선택 횟수와 함께 나온다.
+- 주제 중 하나를 선택한다면, 아래와 같이 해당 주제에서 가장 많은 선택을 받은 후보가 나오며 스크롤을 통해 순위를 볼 수 있다.
+
+![](readme_images/10.png)
+
+### 주제 만들기
+
+![](readme_images/11.png)
+
+- 주제 만들기 페이지에서 자신만의 월드컵을 만들 수 있다. 제목과 요소의 개수를 select를 통해 골라주면, 해당 개수 만큼의 이미지 입력란이 나온다.
+- 전부 입력 후 주제 만들기 버튼을 누르면 주제가 등록되고, 방 만들기, 랭킹 페이지에서 이를 확인 및 사용할 수 있다.
+
+## DataBase
+
+![](readme_images/12.png)
