@@ -7,20 +7,22 @@
   width: 30vw; /* Container width based on content */
   height: 60vh;
   margin: 0 auto; /* Center the container */
+  justify-content: center;
+
   background-color: white; /* Optional: background color for the container */
+
 }
 
 .mypage-profile-image {
-  width: 15vmin; /* Adjust as needed */
-  height: 15vmin; /* Adjust as needed */
+  width: 20vmin; /* Adjust as needed */
+  height: 20vmin; /* Adjust as needed */
   border-radius: 50%; /* Make the image a circle */
   object-fit: cover; /* Ensure the image covers the area */
   margin-bottom: 5vh; /* Space between the image and the name */
-  margin-top: 5vh;
 }
 
 .mypage-nickname-input {
-  font-size: 1.2rem; /* Adjust font size as needed */
+  font-size: 1.5rem; /* Adjust font size as needed */
   border: 1px solid #ccc; /* Optional: border for input */
   border-radius: 5px; /* Rounded corners for input */
   padding: 5px; /* Padding for input */
@@ -28,7 +30,7 @@
   margin-right: 10px; /* Space between input and edit icon */
   margin-left: 24px;
   margin-bottom: 2vh;
-  width: 8vw;
+  width: 9vw;
 }
 
 .mypage-nickname-input:read-only {
@@ -46,6 +48,8 @@
 .mypage-edit-icon {
   cursor: pointer; /* Pointer cursor on hover */
   color: #B1B2FF; /* Color of the edit icon */
+  width: 1.5rem; /* Adjust icon size as needed */
+  height: 1.5rem; /* Adjust icon size as needed */
 }
 
 .mypage-logout-button {
@@ -54,7 +58,7 @@
   padding: 1vh 1vw; /* Padding for the button */
   border-radius: 5px; /* Rounded corners for the button */
   cursor: pointer; /* Pointer cursor on hover */
-  font-size: 0.9rem; /* Adjust font size as needed */
+  font-size: 1.1rem; /* Adjust font size as needed */
 }
 
 .mypage-logout-button:hover {
