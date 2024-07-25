@@ -30,7 +30,7 @@
 
 .tnm-nav-link {
   padding: 4vh 4.5vw;
-  font-size: x-large;
+  font-size: 1.4rem;
   font-weight: bold;
   text-decoration-line: none;
   color: black;
@@ -39,8 +39,8 @@
 .tnm-nav-link:hover {
   padding: 3vh 1.5vw;
   margin: 0vh 3vw;
-  font-size: x-large;
   font-weight: bold;
+  font-size: 1.4rem;
   text-decoration-line: none;
   color: black;
   background-color: #AAC4FF;
@@ -50,7 +50,7 @@
 .tnm-nav-link-click {
   padding: 3vh 1.5vw;
   margin: 0vh 3vw;
-  font-size: x-large;
+  font-size: 1.4rem;
   font-weight: bold;
   text-decoration-line: none;
   color: black;

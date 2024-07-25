@@ -12,9 +12,9 @@
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* 최소 너비 250px, 최대 너비 가능한 만큼 */
-    gap: 20px; /* 상자 간의 간격 */
-    padding: 20px; /* 패딩 추가 */
+    grid-template-columns: repeat(auto-fill, minmax(20vw, 1fr)); /* 최소 너비 250px, 최대 너비 가능한 만큼 */
+    gap: 10px; /* 상자 간의 간격 */
+    padding: 10px; /* 패딩 추가 */
     justify-content: center; /* 가운데 정렬 */
 }
 
