@@ -14,11 +14,11 @@ OurPick은 각종 주제에 대한 월드컵을 개최하는 사이트 입니다
 
 front-end : react + typescript
 
-back-end : django
+[back-end](https://github.com/SPWooSeong/MadCampWeek4) : django
 
 IDE : VSC
 
-Version Control : Git Hub
+Version Control : Github
 
 ## Web Work
 
