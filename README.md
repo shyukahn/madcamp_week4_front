@@ -33,8 +33,6 @@ Version Control : Git Hub
 
 ![](readme_images/2.png)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f6cb388f-3934-47d6-9928-26d2e10eb0fc/fb072350-1919-43b1-b657-5ab87c90cb74/Untitled.png)
-
 - 로그인 화면으로, 구글을 통해 간편하게 로그인 할 수 있다. 기존의 유저는 DB에 있는 정보를 가져오고, 신규 유저는 DB에 등록한다.
 
 ### 마이페이지
